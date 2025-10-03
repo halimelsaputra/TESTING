@@ -4,6 +4,18 @@
 Pembagian tugas berdasarkan **fitur/modul** dengan **1 branch = 1 fitur**.  
 Setiap orang bisa handle multiple branches, tapi **1 branch = 1 Pull Request**.
 
+## ⚠️ PENTING: OOP UPDATE!
+**Project sekarang pakai Hybrid OOP Architecture!**  
+📖 Baca: **`../pembagian-tugas/OOP_UPDATE.md`** untuk detail perubahan.
+
+**NEW Branch yang perlu dibuat:**
+- `feat/oop-implementation` - Models & Services (Order, Package, OrderService, PackageService)
+
+**Affected branches:**
+- `feat/checkout-flow` - Sekarang pakai OrderService
+- `feat/order-management` - Sekarang pakai OrderService
+- `feat/order-detail-qr` - Sekarang pakai OrderService
+
 ---
 
 ## 🌳 Branch Strategy

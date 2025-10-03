@@ -2,6 +2,17 @@
 
 Folder ini berisi pembagian file untuk 3 orang developer agar semua terlihat berkontribusi dalam pengembangan website GoodBite.
 
+## ⚠️ PENTING: OOP UPDATE!
+**Project sekarang pakai Hybrid OOP Architecture!**  
+📖 Baca: **`OOP_UPDATE.md`** untuk detail perubahan.
+
+**Files baru:**
+- `src/models/Order.ts` & `Package.ts`
+- `src/services/OrderService.ts` & `PackageService.ts`
+
+**Files yang updated:**
+- `Checkout.tsx`, `Pesanan.tsx`, `PesananDetail.tsx`
+
 ---
 
 ## 📂 Struktur Pembagian

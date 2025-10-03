@@ -9,33 +9,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, ShoppingBag, QrCode, Calendar, TrendingUp } from "lucide-react";
-
-interface Order {
-  id: string;
-  packageId: string;
-  storeName: string;
-  location: string;
-  price: number;
-  pickupTime: string;
-  orderTime: string;
-  status: "pending" | "picked" | "expired";
-  confirmationCode: string;
-}
+import { OrderService } from "@/services/OrderService";
+import { Order } from "@/models/Order";
 
 const Pesanan = () => {
   const [activeTab, setActiveTab] = useState("semua");
   const [timeLeft, setTimeLeft] = useState<{[key: string]: {hours: number, minutes: number}}>({});
+  const orderService = OrderService.getInstance();
   
   const orders: Order[] = useMemo(() => {
-    const stored = localStorage.getItem("goodbite_orders");
-    return stored ? JSON.parse(stored) : [];
-  }, []);
+    return orderService.getAllOrders();
+  }, [orderService]);
 
   useEffect(() => {
     const calculateTimers = () => {
       const timers: {[key: string]: {hours: number, minutes: number}} = {};
       orders.forEach(order => {
-        if (order.status === "pending") {
+        if (order.isPending()) {
           const now = new Date();
           const [startTime] = order.pickupTime.split(" - ");
           const [hours, minutes] = startTime.split(":").map(Number);
@@ -63,10 +53,10 @@ const Pesanan = () => {
 
   const filteredOrders = useMemo(() => {
     if (activeTab === "semua") return orders;
-    return orders.filter(order => order.status === activeTab);
-  }, [orders, activeTab]);
+    return orderService.getOrdersByStatus(activeTab as "pending" | "picked" | "expired");
+  }, [orders, activeTab, orderService]);
 
-  const getStatusBadge = (status: Order["status"]) => {
+  const getStatusBadge = (status: "pending" | "picked" | "expired") => {
     const variants = {
       pending: { label: "Aktif", variant: "default" as const, color: "bg-primary" },
       picked: { label: "Selesai", variant: "secondary" as const, color: "bg-green-500" },
@@ -76,9 +66,9 @@ const Pesanan = () => {
   };
 
   const stats = {
-    total: orders.length,
-    pending: orders.filter(o => o.status === "pending").length,
-    picked: orders.filter(o => o.status === "picked").length,
+    total: orderService.getTotalOrdersCount(),
+    pending: orderService.getPendingOrders().length,
+    picked: orderService.getPickedOrders().length,
     totalSaved: orders.reduce((sum, order) => sum + order.price * 0.7, 0)
   };
 
@@ -221,7 +211,7 @@ const Pesanan = () => {
                                       </div>
 
                                       {/* Countdown Timer for Pending Orders */}
-                                      {order.status === "pending" && timer && timer.hours < 24 && (
+                                      {order.isPending() && timer && timer.hours < 24 && (
                                         <div className="mt-4 p-4 bg-accent/10 rounded-xl border-2 border-accent/20">
                                           <div className="flex items-center gap-3">
                                             <Clock className="h-5 w-5 text-accent" />
@@ -242,7 +232,7 @@ const Pesanan = () => {
                                     <div>
                                       <p className="text-sm text-muted-foreground mb-1">Total Pembayaran</p>
                                       <p className="text-2xl font-bold text-primary">
-                                        Rp {order.price.toLocaleString('id-ID')}
+                                        {order.getFormattedPrice()}
                                       </p>
                                     </div>
                                   </div>

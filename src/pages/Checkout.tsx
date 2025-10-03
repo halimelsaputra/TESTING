@@ -10,22 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, ArrowRight } from "lucide-react";
-import { packages } from "@/data/packages";
 import { toast } from "sonner";
-
-interface Order {
-  id: string;
-  packageId: string;
-  storeName: string;
-  location: string;
-  price: number;
-  pickupTime: string;
-  orderTime: string;
-  status: "pending" | "picked" | "expired";
-  confirmationCode: string;
-  customerName: string;
-  customerPhone: string;
-}
+import { OrderService } from "@/services/OrderService";
+import { PackageService } from "@/services/PackageService";
+import { Order } from "@/models/Order";
 
 type CheckoutStep = 1 | 2 | 3;
 
@@ -42,7 +30,10 @@ const Checkout = () => {
   const [customerPhone, setCustomerPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   
-  const pkg = packages.find(p => p.id === id);
+  // Use OOP services
+  const packageService = PackageService.getInstance();
+  const orderService = OrderService.getInstance();
+  const pkg = packageService.getPackageById(id || "");
 
   useEffect(() => {
     // Load user data from localStorage
@@ -69,10 +60,6 @@ const Checkout = () => {
       </div>
     );
   }
-
-  const generateConfirmationCode = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
 
   const validateStep1 = () => {
     if (!customerName.trim()) {
@@ -114,27 +101,19 @@ const Checkout = () => {
 
     // Simulate payment processing
     setTimeout(() => {
-      const orderId = Date.now().toString();
-      const confirmationCode = generateConfirmationCode();
-      const newOrder: Order = {
-        id: orderId,
+      // Use OOP OrderService to create order
+      const newOrder = orderService.createOrder({
         packageId: pkg.id,
         storeName: pkg.storeName,
         location: pkg.location,
         price: pkg.price,
         pickupTime: pkg.pickupTime,
-        orderTime: new Date().toISOString(),
-        status: "pending",
-        confirmationCode,
         customerName,
         customerPhone
-      };
+      });
 
-      // Save to localStorage
-      const existingOrders = localStorage.getItem("goodbite_orders");
-      const orders = existingOrders ? JSON.parse(existingOrders) : [];
-      orders.push(newOrder);
-      localStorage.setItem("goodbite_orders", JSON.stringify(orders));
+      // Decrease package availability
+      packageService.decreasePackageAvailability(pkg.id);
 
       setConfirmedOrder(newOrder);
       setOrderConfirmed(true);
@@ -232,7 +211,7 @@ const Checkout = () => {
                     <div className="flex justify-between items-start">
                       <span className="text-muted-foreground">Total</span>
                       <span className="text-2xl font-bold text-primary">
-                        Rp {confirmedOrder.price.toLocaleString('id-ID')}
+                        {confirmedOrder.getFormattedPrice()}
                       </span>
                     </div>
                   </div>
@@ -562,7 +541,7 @@ const Checkout = () => {
                     <div className="space-y-3">
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Harga Paket</span>
-                        <span className="font-medium">Rp {pkg.price.toLocaleString('id-ID')}</span>
+                        <span className="font-medium">{pkg.getFormattedPrice()}</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Jumlah</span>
@@ -571,7 +550,7 @@ const Checkout = () => {
                       <div className="flex justify-between text-sm text-green-600">
                         <span>Hemat</span>
                         <span className="font-semibold">
-                          Rp {(pkg.originalValue - pkg.price).toLocaleString('id-ID')}
+                          Rp {pkg.calculateDiscount().toLocaleString('id-ID')}
                         </span>
                       </div>
                     </div>
@@ -582,10 +561,10 @@ const Checkout = () => {
                       <span className="font-semibold text-lg">Total Bayar</span>
                       <div className="text-right">
                         <p className="text-3xl font-bold text-primary">
-                          Rp {pkg.price.toLocaleString('id-ID')}
+                          {pkg.getFormattedPrice()}
                         </p>
                         <p className="text-xs text-muted-foreground line-through">
-                          Rp {pkg.originalValue.toLocaleString('id-ID')}
+                          {pkg.getFormattedOriginalValue()}
                         </p>
                       </div>
                     </div>

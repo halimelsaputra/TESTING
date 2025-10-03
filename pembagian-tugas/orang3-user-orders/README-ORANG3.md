@@ -1,5 +1,16 @@
 # 👤 ORANG 3: USER MANAGEMENT & ORDERS
 
+## ⚠️ PENTING: OOP UPDATE!
+**`Pesanan.tsx` dan `PesananDetail.tsx` sekarang pakai OOP!**  
+📖 Baca: **`../OOP_UPDATE.md`** untuk detail.
+
+**Yang berubah:**
+- Import `OrderService` dan `Order` model
+- Pakai `OrderService.getAllOrders()`, `getOrderById()`, `updateOrderStatus()`
+- Tidak langsung manipulasi data
+
+---
+
 ## 🎯 Tugas
 Handle autentikasi, order management, profil, dan halaman informasi
 
@@ -7,8 +18,8 @@ Handle autentikasi, order management, profil, dan halaman informasi
 
 ### src/pages/
 - ✅ **`Login.tsx`** - Halaman login/register
-- ✅ **`Pesanan.tsx`** - Daftar pesanan user (history + active orders)
-- ✅ **`PesananDetail.tsx`** - Detail pesanan dengan QR code besar untuk pickup
+- ✅ **`Pesanan.tsx`** - Daftar pesanan user (UPDATED: sekarang pakai OOP)
+- ✅ **`PesananDetail.tsx`** - Detail pesanan dengan QR code (UPDATED: sekarang pakai OOP)
 - ✅ **`Profil.tsx`** - Halaman profil user (edit info, preferensi)
 - ✅ **`Tentang.tsx`** - About/tentang platform GoodBite
 - ✅ **`Bisnis.tsx`** - Halaman untuk bisnis yang mau jadi partner

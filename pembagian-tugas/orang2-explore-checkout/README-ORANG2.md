@@ -1,5 +1,16 @@
 # 👤 ORANG 2: EXPLORE & DETAIL PAGES
 
+## ⚠️ PENTING: OOP UPDATE!
+**`Checkout.tsx` sekarang pakai OOP!**  
+📖 Baca: **`../OOP_UPDATE.md`** untuk detail.
+
+**Yang berubah:**
+- Import `OrderService` dan `Order` model
+- Pakai `OrderService.createOrder()` untuk buat order
+- Tidak langsung manipulasi data
+
+---
+
 ## 🎯 Tugas
 Handle user journey dari explore → detail paket → checkout
 
@@ -8,7 +19,7 @@ Handle user journey dari explore → detail paket → checkout
 ### src/pages/
 - ✅ **`Jelajahi.tsx`** - Halaman eksplorasi/browse paket makanan
 - ✅ **`PaketDetail.tsx`** - Detail paket (kompleks: image gallery, reviews, map, countdown)
-- ✅ **`Checkout.tsx`** - Proses checkout (multi-step form, payment, confirmation)
+- ✅ **`Checkout.tsx`** - Proses checkout (UPDATED: sekarang pakai OOP)
 
 ### src/data/
 - ✅ `packages.ts` - Data paket makanan (shared data yang dipakai di berbagai halaman)

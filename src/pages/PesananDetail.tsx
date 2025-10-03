@@ -9,34 +9,22 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, ArrowLeft, CheckCircle2, Navigation, Phone, Share2, Calendar, Star } from "lucide-react";
 import { toast } from "sonner";
-
-interface Order {
-  id: string;
-  packageId: string;
-  storeName: string;
-  location: string;
-  price: number;
-  pickupTime: string;
-  orderTime: string;
-  status: "pending" | "picked" | "expired";
-  confirmationCode: string;
-}
+import { OrderService } from "@/services/OrderService";
+import { Order } from "@/models/Order";
 
 const PesananDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const orderService = OrderService.getInstance();
   const [order, setOrder] = useState<Order | null>(() => {
-    const stored = localStorage.getItem("goodbite_orders");
-    if (!stored) return null;
-    const orders: Order[] = JSON.parse(stored);
-    return orders.find(o => o.id === id) || null;
+    return orderService.getOrderById(id || "") || null;
   });
   const [showRating, setShowRating] = useState(false);
   const [rating, setRating] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0 });
 
   useEffect(() => {
-    if (!order || order.status !== "pending") return;
+    if (!order || !order.isPending()) return;
     
     const calculateTimeLeft = () => {
       const now = new Date();
@@ -84,18 +72,22 @@ const PesananDetail = () => {
   }
 
   const handleConfirmPickup = () => {
-    const stored = localStorage.getItem("goodbite_orders");
-    if (!stored) return;
+    if (!order) return;
     
-    const orders: Order[] = JSON.parse(stored);
-    const updatedOrders = orders.map(o => 
-      o.id === order.id ? { ...o, status: "picked" as const } : o
-    );
+    // Use OrderService to mark order as picked
+    const success = orderService.markOrderAsPicked(order.id);
     
-    localStorage.setItem("goodbite_orders", JSON.stringify(updatedOrders));
-    setOrder({ ...order, status: "picked" });
-    setShowRating(true);
-    toast.success("Pesanan berhasil dikonfirmasi! 🎉");
+    if (success) {
+      // Update local state
+      const updatedOrder = orderService.getOrderById(order.id);
+      if (updatedOrder) {
+        setOrder(updatedOrder);
+        setShowRating(true);
+        toast.success("Pesanan berhasil dikonfirmasi! 🎉");
+      }
+    } else {
+      toast.error("Gagal mengkonfirmasi pesanan");
+    }
   };
 
   const handleRatingSubmit = () => {
@@ -121,7 +113,7 @@ const PesananDetail = () => {
 
 
 
-  const getStatusInfo = (status: Order["status"]) => {
+  const getStatusInfo = (status: "pending" | "picked" | "expired") => {
     const variants = {
       pending: { 
         label: "Menunggu Pengambilan", 
@@ -152,9 +144,9 @@ const PesananDetail = () => {
 
   // Timeline steps
   const timelineSteps = [
-    { label: "Pesanan Dibuat", completed: true, time: new Date(order.orderTime).toLocaleString('id-ID') },
-    { label: "Menunggu Pickup", completed: order.status !== "expired", time: order.pickupTime },
-    { label: "Diambil", completed: order.status === "picked", time: order.status === "picked" ? "Selesai" : "-" }
+    { label: "Pesanan Dibuat", completed: true, time: order.getFormattedOrderTime() },
+    { label: "Menunggu Pickup", completed: !order.isExpired(), time: order.pickupTime },
+    { label: "Diambil", completed: order.isPicked(), time: order.isPicked() ? "Selesai" : "-" }
   ];
 
   return (
@@ -192,7 +184,7 @@ const PesananDetail = () => {
                     {statusInfo.label}
                   </Badge>
                   <p className="text-white/90 text-lg">{statusInfo.message}</p>
-                  {order.status === "pending" && timeLeft.hours < 24 && (
+                  {order.isPending() && timeLeft.hours < 24 && (
                     <div className="mt-6 pt-6 border-t border-white/20">
                       <p className="text-sm text-white/80 mb-2">Waktu pickup dalam:</p>
                       <p className="text-4xl font-bold">
@@ -296,7 +288,7 @@ const PesananDetail = () => {
                         <div className="space-y-3 text-sm">
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Harga Paket</span>
-                            <span className="font-medium">Rp {order.price.toLocaleString('id-ID')}</span>
+                            <span className="font-medium">{order.getFormattedPrice()}</span>
                           </div>
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Metode Pembayaran</span>
@@ -309,7 +301,7 @@ const PesananDetail = () => {
                         <div className="flex justify-between items-center">
                           <span className="font-bold text-lg">Total</span>
                           <span className="text-3xl font-bold text-primary">
-                            Rp {order.price.toLocaleString('id-ID')}
+                            {order.getFormattedPrice()}
                           </span>
                         </div>
                       </div>
@@ -357,7 +349,7 @@ const PesananDetail = () => {
                 </motion.div>
 
                 {/* Action Card */}
-                {order.status === "pending" && (
+                {order.isPending() && (
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -437,7 +429,7 @@ const PesananDetail = () => {
                 )}
 
                 {/* Success Card */}
-                {order.status === "picked" && !showRating && (
+                {order.isPicked() && !showRating && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
