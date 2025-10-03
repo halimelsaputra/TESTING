@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, ArrowLeft, CheckCircle2, Navigation, Phone, Share2, Calendar, Star, Download } from "lucide-react";
+import { MapPin, ArrowLeft, CheckCircle2, Navigation, Phone, Share2, Calendar, Star } from "lucide-react";
 import { toast } from "sonner";
 
 interface Order {
@@ -119,31 +119,7 @@ const PesananDetail = () => {
     }
   };
 
-  const handleDownloadQR = () => {
-    const svg = document.getElementById("qr-code-svg");
-    if (!svg) return;
-    
-    const svgData = new XMLSerializer().serializeToString(svg);
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    const img = new Image();
-    
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx?.drawImage(img, 0, 0);
-      const pngFile = canvas.toDataURL("image/png");
-      
-      const downloadLink = document.createElement("a");
-      downloadLink.download = `QR-${order.confirmationCode}.png`;
-      downloadLink.href = pngFile;
-      downloadLink.click();
-      
-      toast.success("QR Code berhasil diunduh!");
-    };
-    
-    img.src = "data:image/svg+xml;base64," + btoa(svgData);
-  };
+
 
   const getStatusInfo = (status: Order["status"]) => {
     const variants = {
@@ -151,21 +127,21 @@ const PesananDetail = () => {
         label: "Menunggu Pengambilan", 
         variant: "default" as const, 
         color: "bg-primary",
-        icon: "⏰",
+        icon: "",
         message: "Segera ambil paket kamu sesuai jadwal"
       },
       picked: { 
         label: "Sudah Diambil", 
         variant: "secondary" as const, 
         color: "bg-green-500",
-        icon: "✅",
+        icon: "",
         message: "Pesanan telah selesai"
       },
       expired: { 
         label: "Kadaluarsa", 
         variant: "destructive" as const, 
         color: "bg-gray-400",
-        icon: "⚠️",
+        icon: "",
         message: "Waktu pengambilan telah lewat"
       }
     };
@@ -212,7 +188,6 @@ const PesananDetail = () => {
             >
               <Card className={`border-none shadow-2xl overflow-hidden mb-8 ${statusInfo.color}`}>
                 <CardContent className="p-8 text-white text-center">
-                  <div className="text-6xl mb-4">{statusInfo.icon}</div>
                   <Badge className="bg-white/20 text-white border-none mb-3 text-lg px-6 py-2">
                     {statusInfo.label}
                   </Badge>
@@ -257,23 +232,6 @@ const PesananDetail = () => {
                             includeMargin
                           />
                         </div>
-                      </div>
-
-                      <div className="text-center space-y-4">
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                          <p className="text-sm text-blue-800 font-medium">
-                            📱 Tunjukkan QR code atau kode di atas saat ambil paket
-                          </p>
-                        </div>
-
-                        <Button
-                          variant="outline"
-                          className="w-full"
-                          onClick={handleDownloadQR}
-                        >
-                          <Download className="h-5 w-5 mr-2" />
-                          Download QR Code
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>
@@ -336,7 +294,6 @@ const PesananDetail = () => {
                           </div>
 
                           <div className="flex items-start gap-3 p-4 bg-primary/5 rounded-xl">
-                            <Clock className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                             <div className="flex-1">
                               <p className="font-semibold mb-1">Waktu Pengambilan</p>
                               <p className="text-muted-foreground">{order.pickupTime}</p>
@@ -525,12 +482,7 @@ const PesananDetail = () => {
                         <div>
                           <h3 className="font-bold text-2xl text-green-900 mb-2">Pesanan Selesai!</h3>
                           <p className="text-green-700">
-                            Terima kasih telah menggunakan GoodBite 💚
-                          </p>
-                        </div>
-                        <div className="bg-white/50 rounded-xl p-4">
-                          <p className="text-sm text-green-800">
-                            🌱 Kamu telah menyelamatkan ~1.5kg makanan dan mengurangi ~2.5kg CO₂
+                            Terima kasih telah menggunakan GoodBite
                           </p>
                         </div>
                       </CardContent>

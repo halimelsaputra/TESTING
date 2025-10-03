@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, Mail, PartyPopper, ArrowRight } from "lucide-react";
+import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, Mail, ArrowRight } from "lucide-react";
 import { packages } from "@/data/packages";
 import { toast } from "sonner";
 
@@ -37,7 +37,6 @@ const Checkout = () => {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>(1);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
-  const [showConfetti, setShowConfetti] = useState(false);
   
   // Form state
   const [customerName, setCustomerName] = useState("");
@@ -141,11 +140,8 @@ const Checkout = () => {
 
       setConfirmedOrder(newOrder);
       setOrderConfirmed(true);
-      setShowConfetti(true);
       setIsProcessing(false);
       toast.success("Pesanan berhasil dibuat!");
-      
-      setTimeout(() => setShowConfetti(false), 5000);
     }, 2000);
   };
 
@@ -183,11 +179,6 @@ const Checkout = () => {
                 >
                   <CheckCircle2 className="h-16 w-16 text-white" />
                 </motion.div>
-                {showConfetti && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <PartyPopper className="h-20 w-20 text-accent animate-bounce" />
-                  </div>
-                )}
               </div>
 
               <div className="space-y-3">
