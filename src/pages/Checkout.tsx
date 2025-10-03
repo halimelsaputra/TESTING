@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, PartyPopper, ArrowRight } from "lucide-react";
+import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, ArrowRight } from "lucide-react";
 import { packages } from "@/data/packages";
 import { toast } from "sonner";
 
@@ -36,7 +36,6 @@ const Checkout = () => {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>(1);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
-  const [showConfetti, setShowConfetti] = useState(false);
   
   // Form state
   const [customerName, setCustomerName] = useState("");
@@ -93,6 +92,12 @@ const Checkout = () => {
         setCurrentStep(2);
       }
     } else if (currentStep === 2) {
+      // Check if selected payment method is coming soon
+      const selectedMethod = paymentMethods.find(method => method.id === paymentMethod);
+      if (selectedMethod?.comingSoon) {
+        toast.error(`${selectedMethod.title} belum tersedia. Silakan gunakan "Bayar di Tempat" untuk sementara.`);
+        return;
+      }
       setCurrentStep(3);
     }
   };
@@ -133,11 +138,8 @@ const Checkout = () => {
 
       setConfirmedOrder(newOrder);
       setOrderConfirmed(true);
-      setShowConfetti(true);
       setIsProcessing(false);
       toast.success("Pesanan berhasil dibuat!");
-      
-      setTimeout(() => setShowConfetti(false), 5000);
     }, 2000);
   };
 
@@ -149,8 +151,8 @@ const Checkout = () => {
 
   const paymentMethods = [
     { id: "cash", title: "Bayar di Tempat", subtitle: "Bayar saat ambil paket", icon: Wallet, recommended: true },
-    { id: "ewallet", title: "E-Wallet", subtitle: "GoPay, OVO, Dana", icon: Smartphone, disabled: true },
-    { id: "card", title: "Kartu Kredit/Debit", subtitle: "Visa, Mastercard", icon: CreditCard, disabled: true }
+    { id: "ewallet", title: "E-Wallet", subtitle: "GoPay, OVO, Dana", icon: Smartphone, comingSoon: true },
+    { id: "card", title: "Kartu Kredit/Debit", subtitle: "Visa, Mastercard", icon: CreditCard, comingSoon: true }
   ];
 
   // Success screen
@@ -175,17 +177,12 @@ const Checkout = () => {
                 >
                   <CheckCircle2 className="h-16 w-16 text-white" />
                 </motion.div>
-                {showConfetti && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <PartyPopper className="h-20 w-20 text-accent animate-bounce" />
-                  </div>
-                )}
               </div>
 
               <div className="space-y-3">
                 <h1 className="text-4xl font-heading font-bold">Pesanan Berhasil!</h1>
                 <p className="text-xl text-muted-foreground">
-                  Pesanan kamu telah dikonfirmasi 🎉
+                  Pesanan kamu telah dikonfirmasi
                 </p>
               </div>
 
@@ -262,7 +259,6 @@ const Checkout = () => {
               </div>
 
               <p className="text-sm text-muted-foreground">
-                💚 Terima kasih telah membantu mengurangi food waste!
               </p>
             </motion.div>
           </div>
@@ -388,13 +384,10 @@ const Checkout = () => {
                         {paymentMethods.map((method) => (
                           <button
                             key={method.id}
-                            onClick={() => !method.disabled && setPaymentMethod(method.id)}
-                            disabled={method.disabled}
+                            onClick={() => setPaymentMethod(method.id)}
                             className={`w-full p-6 rounded-2xl border-2 transition-all text-left ${
                               paymentMethod === method.id
                                 ? 'border-primary bg-primary/5 shadow-lg'
-                                : method.disabled
-                                ? 'border-gray-200 opacity-50 cursor-not-allowed'
                                 : 'border-gray-200 hover:border-primary/50 hover:shadow'
                             }`}
                           >
@@ -410,8 +403,8 @@ const Checkout = () => {
                                   {method.recommended && (
                                     <Badge className="bg-accent text-primary text-xs">Recommended</Badge>
                                   )}
-                                  {method.disabled && (
-                                    <Badge variant="secondary" className="text-xs">Segera Hadir</Badge>
+                                  {method.comingSoon && (
+                                    <Badge variant="secondary" className="text-xs">Fitur Dalam Pengembangan</Badge>
                                   )}
                                 </div>
                                 <p className="text-sm text-muted-foreground">{method.subtitle}</p>

@@ -1,3 +1,13 @@
+// Import images
+import rotiBakarImage from "@/img/Roti-bakar.jpg";
+import kopiKananganImage from "@/img/Kopi-kenangan.jpg";
+import pizzaHutImage from "@/img/Pizza-hut.jpg";
+import jcoImage from "@/img/J.co.jpg";
+import kfcImage from "@/img/KfC.jpg";
+import rotiO from "@/img/Roti-O.jpg";
+import chatime from "@/img/Chatime.jpg";
+import hokben from "@/img/Hokben.jpg";
+import geprek from "@/img/Geprek-bensu.jpg";
 export interface Package {
   id: string;
   storeName: string;
@@ -22,7 +32,7 @@ export const packages: Package[] = [
     available: 5,
     pickupTime: "18:00 - 20:00",
     description: "Paket kejutan berisi roti bakar, kue-kue segar, dan pastry pilihan dari oven kami hari ini",
-    image: "/placeholder.svg"
+    image: rotiBakarImage
   },
   {
     id: "2",
@@ -34,7 +44,7 @@ export const packages: Package[] = [
     available: 3,
     pickupTime: "19:00 - 21:00",
     description: "Paket minuman spesial berisi kopi dan minuman pilihan lainnya",
-    image: "/placeholder.svg"
+    image: kopiKananganImage
   },
   {
     id: "3",
@@ -46,7 +56,7 @@ export const packages: Package[] = [
     available: 8,
     pickupTime: "20:00 - 21:30",
     description: "Paket makan malam surprise dengan ayam geprek dan lauk pelengkap",
-    image: "/placeholder.svg"
+    image: geprek
   },
   {
     id: "4",
@@ -58,7 +68,7 @@ export const packages: Package[] = [
     available: 4,
     pickupTime: "21:00 - 22:00",
     description: "Paket donat segar berbagai varian rasa pilihan hari ini",
-    image: "/placeholder.svg"
+    image: jcoImage
   },
   {
     id: "5",
@@ -70,7 +80,7 @@ export const packages: Package[] = [
     available: 2,
     pickupTime: "20:30 - 22:00",
     description: "Paket pizza dan side dish spesial dari menu hari ini",
-    image: "/placeholder.svg"
+    image: pizzaHutImage
   },
   {
     id: "6",
@@ -82,7 +92,7 @@ export const packages: Package[] = [
     available: 6,
     pickupTime: "19:30 - 21:00",
     description: "Paket roti O spesial berbagai varian rasa pilihan",
-    image: "/placeholder.svg"
+    image: rotiO
   },
   {
     id: "7",
@@ -94,7 +104,7 @@ export const packages: Package[] = [
     available: 7,
     pickupTime: "18:30 - 20:30",
     description: "Paket minuman bubble tea pilihan berbagai rasa",
-    image: "/placeholder.svg"
+    image: chatime
   },
   {
     id: "8",
@@ -106,6 +116,6 @@ export const packages: Package[] = [
     available: 5,
     pickupTime: "19:00 - 20:30",
     description: "Paket bento spesial dengan lauk lengkap pilihan chef",
-    image: "/placeholder.svg"
+    image: hokben
   }
 ];

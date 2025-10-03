@@ -13,6 +13,10 @@ import heroImage2 from "@/img/gambar_dashboard_atas2.jpg";
 import heroImage3 from "@/img/gambar_dashboard_atas3.jpg";
 import kfcImage from "@/img/KfC.jpg";
 import jcoImage from "@/img/J.co.jpg";
+import rotiBakarImage from "@/img/Roti-bakar.jpg";
+import kopiKananganImage from "@/img/Kopi-kenangan.jpg";
+import pizzaHutImage from "@/img/Pizza-hut.jpg";
+import orangMakanImage from "@/img/Orang-makan.jpg";
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -56,9 +60,9 @@ const Index = () => {
   const popularPackages = [
     {
       id: "1",
-      name: "MacD",
+      name: "Roti Bakar 88",
       location: "Batoh",
-      image: "/placeholder.svg",
+      image: rotiBakarImage,
       rating: 4.7,
       price: 15000,
       originalPrice: 45000
@@ -67,19 +71,19 @@ const Index = () => {
       id: "2",
       name: "Kopi Kenangan",
       location: "Peuniti",
-      image: "/placeholder.svg",
+      image: kopiKananganImage,
       rating: 4.8,
       price: 20000,
       originalPrice: 50000
     },
     {
       id: "3",
-      name: "Harviest",
+      name: "Pizzza Hut",
       location: "Peuniti",
-      image: "/placeholder.svg",
+      image: pizzaHutImage,
       rating: 4.9,
-      price: 25000,
-      originalPrice: 65000
+      price: 35000,
+      originalPrice: 100000
     }
   ];
 
@@ -447,7 +451,7 @@ const Index = () => {
               
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl">
                 <img 
-                  src="/placeholder.svg" 
+                  src={orangMakanImage} 
                   alt="GoodBite App Preview"
                   className="w-full h-[550px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
