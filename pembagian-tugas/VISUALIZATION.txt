@@ -1,0 +1,291 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                  🎯 GOODBITE PROJECT - PEMBAGIAN TUGAS                ║
+║                       Total: 79 Files Terorganisir                    ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  👤 ORANG 1: FRONTEND FOUNDATION & LANDING PAGE                     │
+├─────────────────────────────────────────────────────────────────────┤
+│  📁 Folder: orang1-landing-page/                                    │
+│  📊 Files: ~35 files                                                │
+│  ⭐ Kompleksitas: ⭐⭐⭐ (Medium)                                     │
+│  🎯 Focus: Setup + Landing Page                                     │
+│                                                                      │
+│  📄 Halaman (2):                                                    │
+│    ✅ Beranda.tsx        → Landing page utama                       │
+│    ✅ NotFound.tsx       → 404 error page                           │
+│                                                                      │
+│  🧩 Components (3):                                                 │
+│    ✅ Header.tsx         → Navigation bar                           │
+│    ✅ Footer.tsx         → Footer                                   │
+│    ✅ PackageCard.tsx    → Card untuk paket makanan                 │
+│                                                                      │
+│  🎨 UI Components (4):                                              │
+│    ✅ button, card, badge, separator                                │
+│                                                                      │
+│  ⚙️  Config (11):                                                   │
+│    ✅ package.json, vite.config.ts, tailwind.config.ts              │
+│    ✅ tsconfig.json (3 files), postcss.config.js                    │
+│    ✅ components.json, eslint.config.js, index.html, README.md      │
+│                                                                      │
+│  🖼️  Images (5):                                                    │
+│    ✅ gambar_dashboard_atas1/2/3.jpg                                │
+│    ✅ KfC.jpg, J.co.jpg                                             │
+│                                                                      │
+│  🚀 Priority: PUSH PERTAMA!                                         │
+│  📖 README: README-ORANG1.md                                        │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  👤 ORANG 2: EXPLORE & DETAIL PAGES                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│  📁 Folder: orang2-explore-checkout/                                │
+│  📊 Files: ~17 files                                                │
+│  ⭐ Kompleksitas: ⭐⭐⭐⭐ (High)                                     │
+│  🎯 Focus: Browse → Detail → Checkout                               │
+│                                                                      │
+│  📄 Halaman (3):                                                    │
+│    ✅ Jelajahi.tsx       → Browse/explore paket makanan             │
+│    ✅ PaketDetail.tsx    → Detail dengan gallery & map              │
+│    ✅ Checkout.tsx       → Multi-step checkout form                 │
+│                                                                      │
+│  💾 Data (1):                                                       │
+│    ✅ packages.ts        → Data source untuk semua paket            │
+│                                                                      │
+│  🎨 UI Components (13):                                             │
+│    ✅ Form: input, label, select, textarea                          │
+│    ✅ Interaction: checkbox, radio-group, form                      │
+│    ✅ Display: tabs, dialog, alert-dialog                           │
+│    ✅ Media: carousel, accordion, avatar                            │
+│                                                                      │
+│  🔑 Key Features:                                                   │
+│    • Image gallery/carousel di PaketDetail                          │
+│    • Multi-step form di Checkout                                    │
+│    • QR code generation                                             │
+│    • Form validation                                                │
+│    • Map embed                                                      │
+│                                                                      │
+│  🚀 Priority: PUSH KEDUA (setelah Orang 1)                          │
+│  📖 README: README-ORANG2.md                                        │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  👤 ORANG 3: USER MANAGEMENT & ORDERS                               │
+├─────────────────────────────────────────────────────────────────────┤
+│  📁 Folder: orang3-user-orders/                                     │
+│  📊 Files: ~23 files                                                │
+│  ⭐ Kompleksitas: ⭐⭐⭐⭐ (High)                                     │
+│  🎯 Focus: Auth + Orders + Profile + Info Pages                     │
+│                                                                      │
+│  📄 Halaman (6):                                                    │
+│    ✅ Login.tsx          → Authentication page                      │
+│    ✅ Pesanan.tsx        → Order history + stats                    │
+│    ✅ PesananDetail.tsx  → Order detail + QR code besar             │
+│    ✅ Profil.tsx         → User profile & settings                  │
+│    ✅ Tentang.tsx        → About GoodBite platform                  │
+│    ✅ Bisnis.tsx         → Partner registration                     │
+│                                                                      │
+│  🪝 Hooks (2):                                                      │
+│    ✅ use-toast.ts       → Toast notifications                      │
+│    ✅ use-mobile.tsx     → Mobile detection                         │
+│                                                                      │
+│  🎨 UI Components (15):                                             │
+│    ✅ Feedback: toast, toaster, alert                               │
+│    ✅ Overlay: sheet, dropdown-menu, popover                        │
+│    ✅ Form: calendar, command                                       │
+│    ✅ Display: scroll-area, skeleton, progress                      │
+│    ✅ Input: slider, switch                                         │
+│    ✅ Data: table                                                   │
+│                                                                      │
+│  🔑 Key Features:                                                   │
+│    • Large QR code (280px) di PesananDetail                         │
+│    • Download QR functionality                                      │
+│    • Order stats calculation                                        │
+│    • Rating & review system                                         │
+│    • Timeline UI                                                    │
+│    • LocalStorage management                                        │
+│                                                                      │
+│  🚀 Priority: PUSH KETIGA (atau bersamaan dengan Orang 2)           │
+│  📖 README: README-ORANG3.md                                        │
+└─────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                          📊 STATISTIK AKHIR                           ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Total Pages:         11 halaman                                      ║
+║  Total Components:    37 components (shared + UI)                     ║
+║  Total Files:         79 files                                        ║
+║  Total Images:        5 images                                        ║
+║  Estimasi Code:       ~4,700 baris                                    ║
+║                                                                        ║
+║  Distribusi:                                                           ║
+║    • Orang 1:  35 files  (~44%) - Setup + Foundation                 ║
+║    • Orang 2:  17 files  (~22%) - Explore + Checkout                 ║
+║    • Orang 3:  23 files  (~29%) - Auth + Orders                      ║
+║    • Docs:     4 files   (~5%)  - README files                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                      🔄 WORKFLOW KOLABORASI                           ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+    1️⃣  ORANG 1                2️⃣  ORANG 2               3️⃣  ORANG 3
+        ↓                          ↓                         ↓
+   Push Setup              Pull from main            Pull from main
+   + Landing Page         + Push Explore             + Push Auth
+        ↓                   & Checkout                & Orders
+   Create PR                     ↓                         ↓
+        ↓                   Create PR                 Create PR
+   Review & Merge                ↓                         ↓
+        ↓                   Review & Merge           Review & Merge
+        └─────────────────────────┴────────────────────────┘
+                                  ↓
+                          ✅ COMPLETE PROJECT!
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                         📚 DOKUMENTASI                                ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  📄 README.md              → Overview lengkap untuk semua             ║
+║  📄 QUICK-START.md         → Panduan cepat untuk pemula               ║
+║  📄 README-ORANG1.md       → Detail untuk Orang 1                     ║
+║  📄 README-ORANG2.md       → Detail untuk Orang 2                     ║
+║  📄 README-ORANG3.md       → Detail untuk Orang 3                     ║
+║  📄 VISUALIZATION.txt      → File ini (visualisasi)                   ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                      🎯 QUICK REFERENCE                               ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Lokasi Folder:                                                       ║
+║    c:\Kuliah\Semester 5\PRAK\Lab POPL\Projek4\pembagian-tugas\       ║
+║                                                                        ║
+║  Struktur:                                                             ║
+║    pembagian-tugas/                                                    ║
+║    ├── README.md                    ← Baca ini dulu!                  ║
+║    ├── QUICK-START.md               ← Untuk pemula                    ║
+║    ├── VISUALIZATION.txt            ← File ini                        ║
+║    ├── orang1-landing-page/         ← Folder Orang 1                  ║
+║    │   ├── README-ORANG1.md                                           ║
+║    │   ├── package.json                                               ║
+║    │   ├── src/                                                       ║
+║    │   └── public/                                                    ║
+║    ├── orang2-explore-checkout/     ← Folder Orang 2                  ║
+║    │   ├── README-ORANG2.md                                           ║
+║    │   └── src/                                                       ║
+║    └── orang3-user-orders/          ← Folder Orang 3                  ║
+║        ├── README-ORANG3.md                                           ║
+║        └── src/                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                     ✅ CHECKLIST KOLABORASI                           ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Before Starting:                                                      ║
+║    □ Baca README.md                                                   ║
+║    □ Tentukan siapa Orang 1, 2, 3                                     ║
+║    □ Koordinasi via group chat                                        ║
+║    □ Install Git & Node.js                                            ║
+║                                                                        ║
+║  Orang 1:                                                              ║
+║    □ Baca README-ORANG1.md                                            ║
+║    □ Buat repository di GitHub                                        ║
+║    □ Push setup + landing page                                        ║
+║    □ Create Pull Request                                              ║
+║    □ Merge ke main setelah review                                     ║
+║    □ Beritahu Orang 2 & 3                                             ║
+║                                                                        ║
+║  Orang 2:                                                              ║
+║    □ Baca README-ORANG2.md                                            ║
+║    □ Tunggu Orang 1 merge                                             ║
+║    □ Clone repository                                                 ║
+║    □ Copy files dari folder orang2                                    ║
+║    □ Push explore + checkout pages                                    ║
+║    □ Create Pull Request                                              ║
+║    □ Merge setelah review                                             ║
+║                                                                        ║
+║  Orang 3:                                                              ║
+║    □ Baca README-ORANG3.md                                            ║
+║    □ Tunggu Orang 1 merge                                             ║
+║    □ Clone repository                                                 ║
+║    □ Copy files dari folder orang3                                    ║
+║    □ Push auth + orders pages                                         ║
+║    □ Create Pull Request                                              ║
+║    □ Merge setelah review                                             ║
+║                                                                        ║
+║  Final Check:                                                          ║
+║    □ Semua PR merged                                                  ║
+║    □ npm install                                                      ║
+║    □ npm run dev                                                      ║
+║    □ Test semua halaman                                               ║
+║    □ Check responsive mobile                                          ║
+║    □ Fix bugs jika ada                                                ║
+║    □ Celebrate! 🎉                                                    ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                      🚀 PERINTAH GIT PENTING                          ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Setup (Orang 1):                                                      ║
+║    git init                                                            ║
+║    git add .                                                           ║
+║    git commit -m "feat: setup project"                                ║
+║    git branch -M main                                                  ║
+║    git remote add origin <URL>                                        ║
+║    git push -u origin main                                            ║
+║                                                                        ║
+║  Clone (Orang 2 & 3):                                                  ║
+║    git clone <URL>                                                    ║
+║    cd goodbite-project                                                ║
+║                                                                        ║
+║  Branch & Push:                                                        ║
+║    git checkout -b feature/nama-fitur                                 ║
+║    git add .                                                           ║
+║    git commit -m "feat: deskripsi"                                    ║
+║    git push origin feature/nama-fitur                                 ║
+║                                                                        ║
+║  Update dari main:                                                     ║
+║    git checkout main                                                   ║
+║    git pull origin main                                               ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                        💡 TIPS & TRICKS                               ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  1. Komunikasi adalah KUNCI - koordinasi terus via chat               ║
+║  2. Test SEBELUM push - jangan push code yang error                   ║
+║  3. Review code teman - belajar dari code orang lain                  ║
+║  4. Commit message JELAS - gunakan format: feat:, fix:, docs:         ║
+║  5. Branch naming KONSISTEN - feature/nama-fitur                      ║
+║  6. Pull Request DETAIL - jelaskan apa yang berubah                   ║
+║  7. Merge SETELAH review - minimal 1 orang approve                    ║
+║  8. BACKUP code - commit sering, push sering                          ║
+║  9. Google ERRORS - Stack Overflow is your friend                     ║
+║  10. HAVE FUN! - Ini proses belajar, enjoy! 🎉                        ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                    🎓 LEARNING OUTCOMES                               ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  Setelah project ini, kalian akan bisa:                               ║
+║    ✅ Kolaborasi dengan Git & GitHub                                  ║
+║    ✅ Pull Request & Code Review                                      ║
+║    ✅ Branch management                                               ║
+║    ✅ Merge conflicts resolution                                      ║
+║    ✅ React + TypeScript development                                  ║
+║    ✅ Component-based architecture                                    ║
+║    ✅ Form handling & validation                                      ║
+║    ✅ LocalStorage management                                         ║
+║    ✅ Responsive design                                               ║
+║    ✅ UI/UX best practices                                            ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════
+                         🌟 GOOD LUCK TEAM! 🌟
+           Let's build an amazing food waste reduction platform!
+═══════════════════════════════════════════════════════════════════════════
+
+Created: October 3, 2025
+Project: GoodBite - Food Waste Reduction Platform
+Tech Stack: React + TypeScript + Vite + Tailwind CSS + shadcn/ui
+Team: 3 Developers
+Mission: Selamatkan Bumi Dari Limbah Makanan! 🌍♻️
