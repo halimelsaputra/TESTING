@@ -15,7 +15,7 @@ export const packages: Package[] = [
   {
     id: "1",
     storeName: "Roti Bakar 88",
-    location: "Jakarta Selatan",
+    location: "Peuniti",
     category: "Bakery",
     price: 15000,
     originalValue: 45000,
@@ -27,7 +27,7 @@ export const packages: Package[] = [
   {
     id: "2",
     storeName: "Kopi Kenangan",
-    location: "Jakarta Pusat",
+    location: "Batoh",
     category: "Minuman",
     price: 20000,
     originalValue: 50000,
@@ -39,7 +39,7 @@ export const packages: Package[] = [
   {
     id: "3",
     storeName: "Geprek Bensu",
-    location: "Tangerang",
+    location: "Lhambhuk",
     category: "Restoran",
     price: 25000,
     originalValue: 65000,
@@ -51,7 +51,7 @@ export const packages: Package[] = [
   {
     id: "4",
     storeName: "J.Co Donuts",
-    location: "Jakarta Barat",
+    location: "Darussalam",
     category: "Bakery",
     price: 30000,
     originalValue: 80000,
@@ -63,7 +63,7 @@ export const packages: Package[] = [
   {
     id: "5",
     storeName: "Pizza Hut",
-    location: "Bekasi",
+    location: "Peuniti",
     category: "Restoran",
     price: 35000,
     originalValue: 100000,
@@ -75,7 +75,7 @@ export const packages: Package[] = [
   {
     id: "6",
     storeName: "Roti'O",
-    location: "Depok",
+    location: "Batoh",
     category: "Bakery",
     price: 18000,
     originalValue: 50000,
@@ -87,7 +87,7 @@ export const packages: Package[] = [
   {
     id: "7",
     storeName: "Chatime",
-    location: "Jakarta Timur",
+    location: "Lhambhuk",
     category: "Minuman",
     price: 22000,
     originalValue: 55000,
@@ -99,7 +99,7 @@ export const packages: Package[] = [
   {
     id: "8",
     storeName: "Hokben",
-    location: "Jakarta Utara",
+    location: "Darussalam",
     category: "Restoran",
     price: 28000,
     originalValue: 70000,

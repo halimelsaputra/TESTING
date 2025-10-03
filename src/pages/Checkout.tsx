@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, Mail, PartyPopper, ArrowRight } from "lucide-react";
+import { MapPin, Clock, ArrowLeft, CheckCircle2, Wallet, CreditCard, Smartphone, User, Phone as PhoneIcon, PartyPopper, ArrowRight } from "lucide-react";
 import { packages } from "@/data/packages";
 import { toast } from "sonner";
 
@@ -25,7 +25,6 @@ interface Order {
   confirmationCode: string;
   customerName: string;
   customerPhone: string;
-  customerEmail: string;
 }
 
 type CheckoutStep = 1 | 2 | 3;
@@ -42,7 +41,6 @@ const Checkout = () => {
   // Form state
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   
   const pkg = packages.find(p => p.id === id);
@@ -54,7 +52,6 @@ const Checkout = () => {
       const user = JSON.parse(userData);
       setCustomerName(user.name || "");
       setCustomerPhone(user.phone || "");
-      setCustomerEmail(user.email || "");
     }
   }, []);
 
@@ -85,10 +82,6 @@ const Checkout = () => {
     }
     if (!customerPhone.trim() || customerPhone.length < 10) {
       toast.error("Mohon isi nomor telepon yang valid");
-      return false;
-    }
-    if (!customerEmail.trim() || !customerEmail.includes('@')) {
-      toast.error("Mohon isi email yang valid");
       return false;
     }
     return true;
@@ -129,8 +122,7 @@ const Checkout = () => {
         status: "pending",
         confirmationCode,
         customerName,
-        customerPhone,
-        customerEmail
+        customerPhone
       };
 
       // Save to localStorage
@@ -246,13 +238,6 @@ const Checkout = () => {
                         Rp {confirmedOrder.price.toLocaleString('id-ID')}
                       </span>
                     </div>
-                  </div>
-
-                  <div className="bg-accent/10 rounded-xl p-4 space-y-2">
-                    <p className="font-semibold text-sm">📱 Notifikasi</p>
-                    <p className="text-sm text-muted-foreground">
-                      Kami telah mengirim email konfirmasi ke {confirmedOrder.customerEmail}
-                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -377,27 +362,6 @@ const Checkout = () => {
                               />
                             </div>
                           </div>
-
-                          <div className="space-y-2">
-                            <Label htmlFor="email">Email *</Label>
-                            <div className="relative">
-                              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                              <Input
-                                id="email"
-                                type="email"
-                                placeholder="email@example.com"
-                                value={customerEmail}
-                                onChange={(e) => setCustomerEmail(e.target.value)}
-                                className="h-12 pl-11"
-                              />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                          <p className="text-sm text-blue-800">
-                            💡 Kami akan mengirim konfirmasi pesanan ke email kamu
-                          </p>
                         </div>
                       </CardContent>
                     </Card>
@@ -461,7 +425,7 @@ const Checkout = () => {
 
                         <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                           <p className="text-sm text-green-800">
-                            ✅ Pembayaran aman dan mudah saat ambil paket
+                             Pembayaran aman dan mudah saat ambil paket
                           </p>
                         </div>
                       </CardContent>
@@ -498,10 +462,6 @@ const Checkout = () => {
                               <span className="text-muted-foreground">Telepon</span>
                               <span className="font-medium">{customerPhone}</span>
                             </div>
-                            <div className="flex justify-between">
-                              <span className="text-muted-foreground">Email</span>
-                              <span className="font-medium">{customerEmail}</span>
-                            </div>
                           </div>
                         </div>
 
@@ -519,7 +479,7 @@ const Checkout = () => {
                         {/* Important Info */}
                         <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
                           <h4 className="font-semibold mb-2 flex items-center gap-2">
-                            ⚠️ Penting untuk Diperhatikan
+                             Penting untuk Diperhatikan
                           </h4>
                           <ul className="space-y-1 text-sm text-yellow-800">
                             <li>• Pastikan ambil paket sesuai waktu yang ditentukan</li>
@@ -635,12 +595,6 @@ const Checkout = () => {
                           Rp {pkg.originalValue.toLocaleString('id-ID')}
                         </p>
                       </div>
-                    </div>
-
-                    <div className="bg-green-50 rounded-xl p-4">
-                      <p className="text-sm text-green-800 text-center">
-                        🌱 Kamu menyelamatkan ~1.5kg makanan!
-                      </p>
                     </div>
                   </CardContent>
                 </Card>

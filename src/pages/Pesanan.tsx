@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, ShoppingBag, Navigation, Phone, QrCode, Calendar, TrendingUp } from "lucide-react";
+import { MapPin, Clock, ShoppingBag, QrCode, Calendar, TrendingUp } from "lucide-react";
 
 interface Order {
   id: string;
@@ -280,27 +280,6 @@ const Pesanan = () => {
                                         Lihat Detail
                                       </Button>
                                     </Link>
-                                    
-                                    {order.status === "pending" && (
-                                      <div className="grid grid-cols-2 gap-2">
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          onClick={() => window.open(`https://maps.google.com/?q=${order.location}`, '_blank')}
-                                        >
-                                          <Navigation className="h-4 w-4 mr-1" />
-                                          Navigasi
-                                        </Button>
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          onClick={() => window.open('https://wa.me/', '_blank')}
-                                        >
-                                          <Phone className="h-4 w-4 mr-1" />
-                                          Hubungi
-                                        </Button>
-                                      </div>
-                                    )}
                                   </div>
                                 </div>
                               </div>

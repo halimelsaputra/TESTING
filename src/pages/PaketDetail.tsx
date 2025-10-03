@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { MapPin, Clock, Store, ArrowLeft, Star, Heart, Share2, Navigation, Phone, ChevronLeft, ChevronRight, TrendingUp, Flame, Award } from "lucide-react";
+import { MapPin, Clock, Store, ArrowLeft, Star, Heart, Share2, ChevronLeft, ChevronRight, TrendingUp, Flame, Award } from "lucide-react";
 import { packages } from "@/data/packages";
 import { toast } from "sonner";
 
@@ -253,7 +253,7 @@ const PaketDetail = () => {
                         </div>
 
                         <div className="bg-primary/5 rounded-2xl p-4 space-y-2">
-                          <p className="font-semibold text-sm">💡 Yang Mungkin Kamu Dapat:</p>
+                          <p className="font-semibold text-sm"> Yang Mungkin Kamu Dapat:</p>
                           <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                             <li>• Roti dan pastry berbagai jenis</li>
                             <li>• Kue dan dessert premium</li>
@@ -263,18 +263,6 @@ const PaketDetail = () => {
                             *Isi paket bervariasi tergantung ketersediaan toko
                           </p>
                         </div>
-                      </div>
-
-                      {/* Quick Actions */}
-                      <div className="grid grid-cols-2 gap-3 pt-4 border-t">
-                        <Button variant="outline" className="w-full" onClick={() => window.open(`https://maps.google.com/?q=${pkg.location}`, '_blank')}>
-                          <Navigation className="h-4 w-4 mr-2" />
-                          Navigasi
-                        </Button>
-                        <Button variant="outline" className="w-full" onClick={() => window.open('https://wa.me/', '_blank')}>
-                          <Phone className="h-4 w-4 mr-2" />
-                          Hubungi
-                        </Button>
                       </div>
                     </CardContent>
                   </Card>
@@ -379,7 +367,7 @@ const PaketDetail = () => {
                         Nilai normal: Rp {pkg.originalValue.toLocaleString('id-ID')}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/20">
-                        <p className="text-sm font-semibold mb-1">💰 Kamu Hemat</p>
+                        <p className="text-sm font-semibold mb-1"> Kamu Hemat</p>
                         <p className="text-2xl font-bold">
                           Rp {(pkg.originalValue - pkg.price).toLocaleString('id-ID')}
                         </p>
@@ -408,7 +396,6 @@ const PaketDetail = () => {
                           <Progress value={stockPercentage} className="h-2" />
                           {pkg.available <= 3 && pkg.available > 0 && (
                             <p className="text-xs text-red-500 font-medium">
-                              🔥 Buruan! Hampir habis
                             </p>
                           )}
                         </div>
@@ -423,30 +410,6 @@ const PaketDetail = () => {
                       >
                         {pkg.available === 0 ? "Habis" : "Pesan Sekarang"}
                       </Button>
-
-                      <p className="text-xs text-muted-foreground text-center leading-relaxed">
-                        ✅ Bayar saat ambil paket<br />
-                        ✅ Bisa dibatalkan kapan saja<br />
-                        ✅ Dijamin fresh & berkualitas
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Info Card */}
-                  <Card className="border-none bg-gradient-to-br from-green-50 to-emerald-50">
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold mb-3 flex items-center gap-2">
-                        <span>🌱</span>
-                        Dampak Positifmu
-                      </h3>
-                      <div className="space-y-2 text-sm text-muted-foreground">
-                        <p>Dengan memesan paket ini, kamu:</p>
-                        <ul className="space-y-1 ml-4">
-                          <li>• Menyelamatkan ~1.5kg makanan</li>
-                          <li>• Mengurangi ~2.5kg CO₂</li>
-                          <li>• Mendukung bisnis lokal</li>
-                        </ul>
-                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>

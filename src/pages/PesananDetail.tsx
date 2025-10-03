@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Clock, ArrowLeft, CheckCircle2, Navigation, Phone, Share2, Calendar, Star, Download } from "lucide-react";
+import { MapPin, Clock, ArrowLeft, CheckCircle2, Share2, Calendar, Star, Download } from "lucide-react";
 import { toast } from "sonner";
 
 interface Order {
@@ -278,39 +278,6 @@ const PesananDetail = () => {
                     </CardContent>
                   </Card>
                 </motion.div>
-
-                {/* Quick Actions */}
-                {order.status === "pending" && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    <Card className="border-none shadow-lg">
-                      <CardContent className="p-6">
-                        <h3 className="font-bold text-lg mb-4">Aksi Cepat</h3>
-                        <div className="grid grid-cols-2 gap-3">
-                          <Button
-                            variant="outline"
-                            className="h-20 flex-col gap-2"
-                            onClick={() => window.open(`https://maps.google.com/?q=${order.location}`, '_blank')}
-                          >
-                            <Navigation className="h-6 w-6 text-primary" />
-                            <span className="text-sm font-semibold">Navigasi</span>
-                          </Button>
-                          <Button
-                            variant="outline"
-                            className="h-20 flex-col gap-2"
-                            onClick={() => window.open('https://wa.me/', '_blank')}
-                          >
-                            <Phone className="h-6 w-6 text-primary" />
-                            <span className="text-sm font-semibold">Hubungi Toko</span>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                )}
               </div>
 
               {/* Right Column - Order Details */}

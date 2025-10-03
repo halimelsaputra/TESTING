@@ -56,8 +56,8 @@ const Index = () => {
   const popularPackages = [
     {
       id: "1",
-      name: "Paket Roti & Kue",
-      location: "Jakarta Selatan",
+      name: "MacD",
+      location: "Batoh",
       image: "/placeholder.svg",
       rating: 4.7,
       price: 15000,
@@ -65,8 +65,8 @@ const Index = () => {
     },
     {
       id: "2",
-      name: "Paket Minuman Kopi",
-      location: "Jakarta Pusat",
+      name: "Kopi Kenangan",
+      location: "Peuniti",
       image: "/placeholder.svg",
       rating: 4.8,
       price: 20000,
@@ -74,8 +74,8 @@ const Index = () => {
     },
     {
       id: "3",
-      name: "Paket Makan Siang",
-      location: "Tangerang",
+      name: "Harviest",
+      location: "Peuniti",
       image: "/placeholder.svg",
       rating: 4.9,
       price: 25000,
@@ -247,12 +247,11 @@ const Index = () => {
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="space-y-3">
-              <Badge className="bg-primary/10 text-primary border-none mb-2">⚡ Trending</Badge>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
                 Paket Paling Populer
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                Temukan paket favorit dari ribuan pengguna. Hemat hingga 70% untuk makanan berkualitas!
+                Temukan surprise bag menarik dari toko favorit anda. Hemat sampai dengan 70%!
               </p>
             </div>
             
@@ -354,12 +353,11 @@ const Index = () => {
         
         <div className="container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <Badge className="bg-primary/10 text-primary border-none mb-4">✨ Kenapa GoodBite?</Badge>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
               Manfaat untuk <span className="text-primary">Semua Pihak</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Solusi win-win yang menguntungkan pelanggan, restoran, dan lingkungan sekaligus
+              Solusi win-win yang menguntungkan pelanggan, restoran, dan lingkungan
             </p>
           </div>
 
@@ -490,7 +488,6 @@ const Index = () => {
             {/* Right - Enhanced Content */}
             <div className="space-y-8 order-1 lg:order-2">
               <div className="space-y-4">
-                <Badge className="bg-accent/10 text-accent border-none">🎉 Penawaran Terbatas</Badge>
                 <h2 className="font-heading text-5xl md:text-6xl font-bold text-foreground leading-tight">
                   Lepaskan Keinginan{" "}
                   <span className="text-primary relative inline-block">
@@ -706,9 +703,6 @@ const Index = () => {
                 {/* Content */}
                 <div className="relative z-10 text-center space-y-8">
                   <div className="space-y-4">
-                    <Badge className="bg-accent/20 text-accent border-none px-6 py-2 text-base">
-                      💚 Bergabunglah Dengan Ribuan Pengguna
-                    </Badge>
                     
                     <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
                       Siap Mulai{" "}

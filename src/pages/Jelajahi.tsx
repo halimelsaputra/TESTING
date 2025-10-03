@@ -14,7 +14,8 @@ const Jelajahi = () => {
   const [sortBy, setSortBy] = useState("terbaru");
 
   const categories = ["semua", ...Array.from(new Set(packages.map(p => p.category)))];
-  const locations = ["semua", ...Array.from(new Set(packages.map(p => p.location)))];
+  // Fixed locations: Peuniti, Batoh, Lhambhuk, Darussalam
+  const locations = ["semua", "Peuniti", "Batoh", "Lhambhuk", "Darussalam"];
 
   const filteredPackages = useMemo(() => {
     let filtered = [...packages];
@@ -118,17 +119,16 @@ const Jelajahi = () => {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <p className="text-sm font-semibold text-foreground">
-                🎯 Menampilkan <span className="text-primary">{filteredPackages.length}</span> paket
               </p>
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-full sm:w-[200px] h-11 rounded-full border-2">
                   <SelectValue placeholder="Urutkan" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="terbaru">✨ Terbaru</SelectItem>
-                  <SelectItem value="hemat">💰 Hemat Terbesar</SelectItem>
-                  <SelectItem value="harga-rendah">⬇️ Harga Terendah</SelectItem>
-                  <SelectItem value="harga-tinggi">⬆️ Harga Tertinggi</SelectItem>
+                  <SelectItem value="terbaru"> Terbaru</SelectItem>
+                  <SelectItem value="hemat"> Hemat Terbesar</SelectItem>
+                  <SelectItem value="harga-rendah"> Harga Terendah</SelectItem>
+                  <SelectItem value="harga-tinggi"> Harga Tertinggi</SelectItem>
                 </SelectContent>
               </Select>
             </div>
